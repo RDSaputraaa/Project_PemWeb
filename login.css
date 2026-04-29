@@ -1,0 +1,142 @@
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Latar Belakang dan Layout Terpusat */
+body {
+    background-color: #f4f7f6; /* Warna abu-abu sangat muda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Mengisi penuh tinggi layar browser */
+    color: #333;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+/* Desain Kotak Login */
+.login-card {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.logo-login {
+    font-size: 28px;
+    font-weight: 800;
+    color: #b71c1c;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.login-card h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* Desain Input Form */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #b71c1c;
+}
+
+/* Opsi Tambahan (Checkbox & Lupa Password) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.options label {
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.forgot-pass {
+    text-decoration: none;
+    color: #b71c1c;
+    font-weight: 600;
+}
+
+/* Tombol Login */
+.btn-login {
+    width: 100%;
+    background-color: #b71c1c;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-login:hover {
+    background-color: #901616;
+}
+
+.btn-login:active {
+    transform: scale(0.98);
+}
+
+/* Tautan Daftar */
+.register-link {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #666;
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #b71c1c;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
