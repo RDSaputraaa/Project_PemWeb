@@ -6,154 +6,141 @@
 }
 
 body {
-    background-color: #f4fbfa;
-    color: #333;
+    background-color: #f8f9fa;
 }
 
-header {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    background-color: #fff;
-    border-bottom: 2px solid #027c6e;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background-color: white;
+    border-bottom: 2px solid #007c60;
 }
 
 .logo {
     font-size: 24px;
     font-weight: 800;
-    color: #027c6e;
     font-style: italic;
+    color: #007c60;
 }
 
-nav a {
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-link {
     text-decoration: none;
-    color: #555;
-    margin-left: 20px;
-    font-size: 14px;
+    color: #333;
     font-weight: 600;
 }
 
-nav a:hover {
-    color: #027c6e;
-}
-
-.btn-register {
-    background-color: #027c6e;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 4px;
-}
-
-.btn-register:hover {
-    background-color: #025e54;
-    color: #fff;
+.register-btn {
+    background-color: #007c60;
+    color: white;
+    padding: 8px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .search-section {
-    background-color: #ffffff;
-    padding: 20px 50px;
-    border-bottom: 1px solid #d6f0ec;
-}
-
-.search-box {
     display: flex;
+    justify-content: center;
     gap: 15px;
-    max-width: 1000px;
-    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: white;
 }
 
-.search-box input {
-    flex: 1;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
+.search-bar {
+    width: 100%;
+    max-width: 650px;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
     border-radius: 6px;
-    font-size: 14px;
-    outline: none;
+    font-size: 15px;
 }
 
-.search-box input:focus {
-    border-color: #027c6e;
-    box-shadow: 0 0 0 2px rgba(2, 124, 110, 0.1);
-}
-
-.btn-search {
-    background-color: #027c6e;
+.search-btn {
+    background-color: #007c60;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 0 25px;
     border-radius: 6px;
-    cursor: pointer;
     font-weight: bold;
-    font-size: 14px;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-.btn-search:hover {
-    background-color: #025e54;
-}
-
-main {
-    padding: 30px 50px;
+.catalog {
+    padding: 40px 50px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .subtitle {
-    font-size: 13px;
-    color: #777;
-    margin-bottom: 20px;
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 14px;
 }
 
-.venue-grid {
+.card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
 
 .card {
-    background-color: #fff;
-    border-radius: 8px;
-    border: 1px solid #d6f0ec;
+    background-color: white;
+    border-radius: 10px;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #eee;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(2, 124, 110, 0.15);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
 }
 
 .card img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid #d6f0ec;
 }
 
-.card-content {
-    padding: 15px;
+.card-body {
+    padding: 20px;
 }
 
-.card-content h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #1a1a1a;
+.card-body h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #222;
 }
 
-.rating, .sport-type {
+.info, .category {
     font-size: 13px;
     color: #666;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 .price {
     margin-top: 15px;
-    font-size: 12px;
-    color: #777;
+    font-size: 14px;
+    color: #666;
 }
 
 .price strong {
-    font-size: 16px;
-    color: #027c6e;
+    font-size: 18px;
+    color: #007c60;
+}
+.price span {
+    font-size: 12px;
 }
