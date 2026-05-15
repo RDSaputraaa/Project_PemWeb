@@ -3,43 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk - Gelora Sport</title>
+    <title>Daftar - Gelora Sport</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-
-    <div class="login-container">
-        <div class="login-card">
-            <div class="logo-login">Gelora Sport</div>
-            <h2>Selamat Datang Kembali</h2>
-            <p class="subtitle">Silakan masuk ke akun Pengguna Anda.</p>
-
-            <form action="proses_login.php" method="POST">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Masukkan alamat email" required>
+    <div class="container">
+        <div class="left-side">
+            <div class="overlay">
+                <div class="hero-content">
+                    <h1>Gelora Sport</h1>
+                    <p>Sewa lapangan olahraga dengan mudah, cepat, dan terpercaya.</p>
                 </div>
-                
-                <div class="input-group">
-                    <label for="password">Kata Sandi</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi" required>
-                </div>
-
-                <div class="options">
-                    <label>
-                        <input type="checkbox" name="remember"> Ingat Saya
-                    </label>
-                    <a href="#" class="forgot-pass">Lupa Kata Sandi?</a>
-                </div>
-
-                <button type="submit" class="btn-login">Masuk</button>
-            </form>
-
-            <div class="register-link">
-                Belum punya akun? <a href="register.html">Daftar sekarang</a>
             </div>
         </div>
-    </div>
 
+        <div class="right-side">
+            <div class="form-card">
+                <h2>LOGIN</h2>
+                <p class="subtitle">Silakan isi data berikut</p>
+                <form>
+                    <div class="input-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama lengkap">
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Masukkan email">
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Buat password">
+                    </div>
+                    <button type="submit" class="btn-submit">Masuk Disini</button>
 </body>
 </html>
