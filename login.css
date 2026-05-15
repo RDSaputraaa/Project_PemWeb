@@ -4,132 +4,126 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 body {
     background-color: #f4f7f6;
+}
+.container {
     display: flex;
-    justify-content: center;
+    min-height: 100vh;
+}
+.left-side {
+    flex: 1;
+    background: url('https://images.unsplash.com/photo-1541252260730-0412e3e2108e?q=80&w=1000') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    display: flex;
     align-items: center;
-    height: 100vh;
-    color: #333;
+    justify-content: center;
 }
-
-.login-container {
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 420px;
-    padding: 20px;
+    height: 100%;
+    background: rgba(34, 139, 34, 0.85); 
+    display: flex;
+    align-items: center;
+    padding: 60px;
 }
-
-.login-card {
-    background-color: #fff;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    text-align: center;
+.hero-content {
+    color: white;
+    max-width: 400px;
 }
-
-.logo-login {
-    font-size: 28px;
-    font-weight: 800;
-    color: #b71c1c;
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
     font-style: italic;
     margin-bottom: 10px;
 }
-
-.login-card h2 {
-    font-size: 22px;
-    margin-bottom: 5px;
-    color: #222;
+.hero-content p {
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
-
-.subtitle {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 30px;
-}
-
-.input-group {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #444;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.input-group input:focus {
-    border-color: #b71c1c;
-}
-
-.options {
+.right-side {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 13px;
+    justify-content: center;
+    padding: 40px;
+}
+.form-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+}
+.form-card h2 {
+    font-size: 1.8rem;
+    color: #333;
+}
+.subtitle {
+    color: #777;
     margin-bottom: 25px;
 }
-
-.options label {
-    color: #555;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.input-group {
+    margin-bottom: 15px;
 }
-
-.forgot-pass {
-    text-decoration: none;
-    color: #b71c1c;
+.input-group label {
+    display: block;
     font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
 }
-
-.btn-login {
+.input-group input {
     width: 100%;
-    background-color: #b71c1c;
-    color: #fff;
-    border: none;
-    padding: 14px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+.input-group input:focus {
+    border-color: #228b22;
+    box-shadow: 0 0 5px rgba(34, 139, 34, 0.2);
+}
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #228b22;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 10px;
+    transition: 0.3s;
 }
-
-.btn-login:hover {
-    background-color: #901616;
+.btn-submit:hover {
+    background-color: #1a6d1a;
 }
-
-.btn-login:active {
-    transform: scale(0.98);
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
 }
-
-.register-link {
-    margin-top: 25px;
-    font-size: 14px;
-    color: #666;
-}
-
-.register-link a {
+.login-link a {
+    color: #170555;
     text-decoration: none;
-    color: #b71c1c;
-    font-weight: 600;
+    font-weight: bold;
 }
-
-.register-link a:hover {
-    text-decoration: underline;
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .left-side {
+        min-height: 250px;
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
 }
