@@ -39,32 +39,28 @@
         <main class="main-content">
             <section class="image-section">
                 <div class="image-wrapper">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzwzU3_KVkLO1n8bcG6APpPR1XpHDiPhqZ5A&s" alt="Lapangan Futsal">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzwzU3_KVkLO1n8bcG6APpPR1XpHDiPhqZ5A&s">
                 </div>
                 <div class="card-body">
                     <h2>Lapangan Futsal</h2>
-                    <p>⭐ 5.0 ·  Kota Bandar Lampung, Lampung</p>
+                    <p>⭐ 5.0 · Kota Bandar Lampung, Lampung</p>
                 </div>
             </section>
-
             <section class="details-section">
                 <div class="field-info">
-                    <h1>Lapangan Futsal <i class="fa-solid fa-chevron-right" style="font-size: 14px; color: #777;"></i></h1>
+                    <h1>Lapangan Futsal <i class="fa-solid fa-chevron-right" style="font-size:14px;color:#777;"></i></h1>
                     <p class="subtitle">Lapangan menggunakan karpet rumput sintetis</p>
-                    
                     <div class="tags">
                         <span><i class="fa-regular fa-futbol"></i> Futsal</span>
                         <span><i class="fa-solid fa-person-shelter"></i> indoor</span>
                     </div>
                 </div>
-
                 <div class="schedule-header">
-                    <button class="availability-badge">
-                        Jadwal Tersedia <i class="fa-solid fa-chevron-down"></i>
+                    <button class="availability-badge" id="toggleSchedule">
+                        Jadwal Tersedia <i class="fa-solid fa-chevron-down" id="arrowIcon"></i>
                     </button>
                 </div>
-
-                <div class="time-slots-grid">
+                <div class="time-slots-grid" id="scheduleBox">
                     <div class="slot-card">
                         <span class="duration">60 Menit</span>
                         <span class="time">11:00 - 12:00</span>
@@ -88,22 +84,17 @@
                 </div>
             </section>
         </main>
-
         <section class="description-section">
             <h2>Tentang Lapangan Futsal</h2>
             <p>Lapangan futsal yang berlokasi di Bandar Lampung. Tersedia 2 lapangan Futsal Indoor dengan material Karpet Rumput Sintetis ukuran standar Futsal.</p>
-            
             <p>Kami mengundang Anda untuk merasakan pengalaman berolahraga di fasilitas terbaik yang Kami sediakan. Ketersediaan lapangan dan fasilitas Kami dapat disesuaikan dengan kebutuhan acara dan aktivitas Anda.</p>
-
             <h3>Layanan Tambahan</h3>
-            <p>Tersedia jasa/layanan tambahan (exclude : biaya booking lapangan) :</p>
             <ul>
                 <li>Sewa Sepatu Futsal</li>
                 <li>Sewa Bola Futsal</li>
                 <li>Sewa Rompi Tim</li>
             </ul>
             <h3>Aturan Venue</h3>
-            <p>Peraturan lapangan di Lapangan Futsal :</p>
             <ul>
                 <li>Dilarang merokok.</li>
                 <li>Dilarang meludah di area lapangan.</li>
@@ -112,6 +103,24 @@
             </ul>
         </section>
     </div>
+
+<script>
+const btn=document.getElementById("toggleSchedule");
+const box=document.getElementById("scheduleBox");
+const arrow=document.getElementById("arrowIcon");
+
+box.style.display="none";
+
+btn.addEventListener("click",()=>{
+if(box.style.display==="none"){
+box.style.display="grid";
+arrow.style.transform="rotate(180deg)";
+}else{
+box.style.display="none";
+arrow.style.transform="rotate(0deg)";
+}
+});
+</script>
 
 </body>
 </html>
