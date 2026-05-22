@@ -27,7 +27,7 @@ $slots = $stmt->fetchAll();
 
 $bookMsg = ''; $bookError = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['slot_id'])) {
-    if (!$user) { redirect('/login.php'); }
+    if (!$user) { redirect('login.php'); }
     $slotId = (int)$_POST['slot_id'];
 
     $cek = $db->prepare("SELECT * FROM slot_waktu WHERE id = ? AND status = 'Tersedia' LIMIT 1");
@@ -152,7 +152,7 @@ $tanggalList = [tglLabel(0), tglLabel(1), tglLabel(2)];
                         <form method="POST" action="detail.php?id=<?= $id ?>&tgl=<?= $activeTanggal ?>" style="display:contents;">
                             <input type="hidden" name="slot_id" value="<?= $s['id'] ?>">
                             <button type="submit" class="slot-card" style="background:none;border:1px solid #eaeaea;cursor:pointer;text-align:center;"
-                                    <?= !$user ? 'onclick="return confirm(\'Login dulu untuk booking!\'); window.location=\'/login.php\'; return false;"' : '' ?>>
+                                    <?= !$user ? 'onclick="return confirm(\'Login dulu untuk booking!\'); window.location=\'login.php\'; return false;"' : '' ?>>
                                 <span class="duration">60 Menit</span>
                                 <span class="time"><?= substr($s['jam_mulai'],0,5) ?> - <?= substr($s['jam_selesai'],0,5) ?></span>
                                 <span class="price"><?= formatRupiah((int)$s['harga']) ?></span>

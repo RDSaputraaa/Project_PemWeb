@@ -14,7 +14,7 @@ function currentUser(): ?array {
 function requireLogin(): array {
     $user = currentUser();
     if (!$user) {
-        header('Location: /login.php');
+        header('Location: login.php');
         exit;
     }
     return $user;
@@ -23,7 +23,7 @@ function requireLogin(): array {
 function requireAdmin(): array {
     $user = currentUser();
     if (!$user || $user['role'] !== 'admin') {
-        header('Location: /login.php');
+        header('Location: login.php');
         exit;
     }
     return $user;

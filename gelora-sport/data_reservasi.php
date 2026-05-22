@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $s = $slotId->fetchColumn();
         if ($s) $db->prepare("UPDATE slot_waktu SET status='Tersedia' WHERE id=?")->execute([$s]);
     }
-    redirect('/data_reservasi.php');
+    redirect('data_reservasi.php');
 }
 
 $stmt = $db->query("SELECT r.*, u.nama as nama_user, l.nama as nama_lapangan
@@ -40,7 +40,7 @@ $statusClass = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Reservasi - Gelora Sport</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -69,7 +69,7 @@ $statusClass = [
                 <span style="color:#888;font-size:14px;"><?= count($reservasis) ?> total reservasi</span>
             </div>
             <div class="table-container">
-                <table>
+                <table class="data-table">
                     <thead>
                         <tr><th>Kode</th><th>Pelanggan</th><th>Lapangan</th><th>Tanggal</th><th>Waktu</th><th>Total</th><th>Status</th><th>Aksi</th></tr>
                     </thead>

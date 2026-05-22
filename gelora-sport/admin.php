@@ -8,7 +8,7 @@ $db   = getDB();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['konfirmasi_id'])) {
     $rid = (int)$_POST['konfirmasi_id'];
     $db->prepare("UPDATE reservasi SET status='Dikonfirmasi', status_bayar='Lunas' WHERE id=?")->execute([$rid]);
-    redirect('/admin.php');
+    redirect('admin.php');
 }
 
 $totalLapangan = $db->query("SELECT COUNT(*) FROM lapangan WHERE status='Aktif'")->fetchColumn();
@@ -31,7 +31,7 @@ $reservasis = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Gelora Sport</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -42,12 +42,12 @@ $reservasis = $stmt->fetchAll();
             <p>Admin Panel</p>
         </div>
         <ul class="sidebar-menu">
-            <li class="active"><a href="/admin.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-            <li><a href="/manajemen_lapangan.php"><i class="fa-solid fa-layer-group"></i> Manajemen Lapangan</a></li>
-            <li><a href="/data_reservasi.php"><i class="fa-solid fa-clipboard-list"></i> Data Reservasi</a></li>
+            <li class="active"><a href="admin.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+            <li><a href="manajemen_lapangan.php"><i class="fa-solid fa-layer-group"></i> Manajemen Lapangan</a></li>
+            <li><a href="data_reservasi.php"><i class="fa-solid fa-clipboard-list"></i> Data Reservasi</a></li>
         </ul>
         <div class="sidebar-footer">
-            <a href="/logout.php" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+            <a href="logout.php" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
         </div>
     </aside>
     <main class="main-content">
@@ -81,33 +81,34 @@ $reservasis = $stmt->fetchAll();
         <section class="recent-reservations">
             <div class="section-header">
                 <h2>Reservasi Terbaru</h2>
-                <a href="/data_reservasi.php"><button class="btn-primary">Lihat Semua</button></a>
+                <a href="data_reservasi.php"><button class="btn-primary">Lihat Semua</button></a>
             </div>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Kode</th><th>Pelanggan</th><th>Lapangan</th>
-                            <th>Tanggal</th><th>Waktu</th><th>Status</th><th>Aksi</th>
+                            <th>Nama Pelanggan</th>
+                            <th>Lapangan</th>
+                            <th>Waktu</th>
+                            <th>Status Pembayaran</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($reservasis)): ?>
-                            <tr><td colspan="7" style="text-align:center;color:#888;">Belum ada reservasi.</td></tr>
+                            <tr><td colspan="5" style="text-align:center;color:#888;">Belum ada reservasi.</td></tr>
                         <?php endif; ?>
                         <?php foreach ($reservasis as $r): ?>
                         <tr>
-                            <td style="font-size:12px;color:#888;"><?= e($r['kode_reservasi']) ?></td>
                             <td><?= e($r['nama_user']) ?></td>
                             <td><?= e($r['nama_lapangan']) ?></td>
-                            <td><?= formatTanggal($r['tanggal']) ?></td>
-                            <td><?= substr($r['jam_mulai'],0,5) ?> - <?= substr($r['jam_selesai'],0,5) ?></td>
+                            <td><?= formatTanggal($r['tanggal']) ?>, <?= substr($r['jam_mulai'],0,5) ?> - <?= substr($r['jam_selesai'],0,5) ?></td>
                             <td><span class="badge <?= $r['status_bayar']==='Lunas'?'confirmed':'pending' ?>">
-                                <?= $r['status_bayar']==='Lunas'?'Lunas':'Menunggu' ?>
+                                <?= $r['status_bayar']==='Lunas'?'Lunas':'Menunggu Konfirmasi' ?>
                             </span></td>
                             <td>
                                 <?php if ($r['status'] === 'Menunggu Konfirmasi'): ?>
-                                    <form method="POST" action="/admin.php" style="display:inline;">
+                                    <form method="POST" action="admin.php" style="display:inline;">
                                         <input type="hidden" name="konfirmasi_id" value="<?= $r['id'] ?>">
                                         <button type="submit" class="btn-action">Konfirmasi</button>
                                     </form>

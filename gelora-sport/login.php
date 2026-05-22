@@ -3,7 +3,7 @@ require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/config/helper.php';
 
 if (currentUser()) {
-    redirect(isAdmin() ? '/admin.php' : '/index.php');
+    redirect(isAdmin() ? 'admin.php' : 'index.php');
 }
 
 $error = '';
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'email' => $user['email'],
                 'role'  => $user['role'],
             ];
-            redirect($user['role'] === 'admin' ? '/admin.php' : '/index.php');
+            redirect($user['role'] === 'admin' ? 'admin.php' : 'index.php');
         } else {
             $error = 'Email atau password salah.';
         }

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/config/helper.php';
 
-if (currentUser()) redirect('/index.php');
+if (currentUser()) redirect('index.php');
 
 $error   = '';
 $success = '';
