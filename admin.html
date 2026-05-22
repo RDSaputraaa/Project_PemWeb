@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Gelora Sport</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Gelora Sport</h2>
+                <p>Admin Panel</p>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="admin.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="manajemen_lapangan.html"><i class="fa-solid fa-layer-group"></i> Manajemen Lapangan</a></li>
+                <li><a href="jadwal_operasional.html"><i class="fa-regular fa-calendar-days"></i> Jadwal Operasional</a></li>
+                <li><a href="data_reservasi.html"><i class="fa-solid fa-clipboard-list"></i> Data Reservasi</a></li>
+                <li><a href="laporan_transaksi.html"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Transaksi</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-title">
+                    <h1>Dashboard Overview</h1>
+                </div>
+                <div class="admin-profile">
+                    <span class="admin-name">Halo, Admin</span>
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                </div>
+            </header>
+
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-futbol"></i></div>
+                    <div class="metric-info">
+                        <p>Total Lapangan</p>
+                        <h3>3</h3>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="metric-info">
+                        <p>Reservasi Hari Ini</p>
+                        <h3>12</h3>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon warning"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="metric-info">
+                        <p>Menunggu Konfirmasi</p>
+                        <h3>5</h3>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon success"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="metric-info">
+                        <p>Pendapatan (Bulan Ini)</p>
+                        <h3>Rp 4.500.000</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recent-reservations">
+                <div class="section-header">
+                    <h2>Reservasi Terbaru</h2>
+                    <button class="btn-primary">Lihat Semua</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama Pelanggan</th>
+                                <th>Lapangan</th>
+                                <th>Waktu</th>
+                                <th>Status Pembayaran</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Budi Santoso</td>
+                                <td>Futsal</td>
+                                <td>10 Mei, 19:00 - 21:00</td>
+                                <td><span class="badge pending">Menunggu Konfirmasi</span></td>
+                                <td><button class="btn-action">Konfirmasi</button></td>
+                            </tr>
+                            <tr>
+                                <td>Andi Wijaya</td>
+                                <td>Badminton</td>
+                                <td>10 Mei, 16:00 - 18:00</td>
+                                <td><span class="badge confirmed">Lunas</span></td>
+                                <td><button class="btn-action disabled" disabled>Selesai</button></td>
+                            </tr>
+                            <tr>
+                                <td>Tim Basket Unila</td>
+                                <td>Basket</td>
+                                <td>11 Mei, 15:00 - 17:00</td>
+                                <td><span class="badge pending">Menunggu Konfirmasi</span></td>
+                                <td><button class="btn-action">Konfirmasi</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

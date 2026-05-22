@@ -1,0 +1,113 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+body{
+    min-height:100vh;
+    overflow-y:auto;
+}
+.register-wrapper{
+    display:flex;
+    min-height:100vh;
+}
+.register-left{
+    flex:1;
+    background:
+        linear-gradient(rgba(183,28,28,0.9),rgba(183,28,28,0.9)),
+        url("https://images.unsplash.com/photo-1517649763962-0c623066013b");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    padding:60px;
+}
+.branding h1{
+    font-size:48px;
+    font-style:italic;
+    margin-bottom:20px;
+}
+.branding p{
+    font-size:18px;
+    max-width:400px;
+    line-height:1.6;
+}
+.register-right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f4f7f6;
+    padding:40px 0;
+}
+.register-card{
+    width:420px;
+    background:white;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+.register-card h2{
+    margin-bottom:5px;
+}
+.subtitle{
+    color:#777;
+    margin-bottom:25px;
+}
+.input-group{
+    margin-bottom:18px;
+}
+.input-group label{
+    font-size:13px;
+    font-weight:600;
+}
+.input-group input{
+    width:100%;
+    margin-top:6px;
+    padding:14px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+.input-group input:focus{
+    outline:none;
+    border-color:#b71c1c;
+}
+.btn-register{
+    width:100%;
+    background:#b71c1c;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.btn-register:hover{
+    background:#901616;
+}
+.login-link{
+    margin-top:20px;
+    text-align:center;
+}
+.login-link a{
+    color:#b71c1c;
+    text-decoration:none;
+    font-weight:600;
+}
+@media(max-width:900px){
+    .register-left{
+        display:none;
+    }
+    .register-right{
+        flex:100%;
+        padding:30px;
+    }
+    .register-card{
+        width:100%;
+        max-width:400px;
+    }
+}
