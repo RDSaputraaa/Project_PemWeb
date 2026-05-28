@@ -1,9 +1,9 @@
 <?php
-// ============================================================
-//  views/admin/manajemen_lapangan.php — View manajemen lapangan
-//  Variabel dari Controller: $user, $msg, $lapangans,
-//    $jenisClass, $statusClass, $activePage
-// ============================================================
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="id">

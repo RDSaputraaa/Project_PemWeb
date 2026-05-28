@@ -116,7 +116,6 @@
     </div>
 
     <script>
-    // Validasi Form Sisi Klien (HTML5 & JavaScript)
     document.getElementById('profileForm').addEventListener('submit', function(e) {
         const password = this.querySelector('input[name="password"]').value;
         const konfirmasi = this.querySelector('input[name="konfirmasi"]').value;

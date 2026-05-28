@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-//  models/UserModel.php — Model untuk tabel users
-//  Mengelola semua query yang berhubungan dengan data user
-// ============================================================
+
+
+
+
 
 require_once __DIR__ . '/../config/db.php';
 
@@ -15,9 +15,7 @@ class UserModel
         $this->db = getDB();
     }
 
-    /**
-     * Cari user berdasarkan email
-     */
+    
     public function findByEmail(string $email): ?array
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
@@ -26,9 +24,7 @@ class UserModel
         return $user ?: null;
     }
 
-    /**
-     * Cari user berdasarkan ID
-     */
+    
     public function findById(int $id): ?array
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ? LIMIT 1");
@@ -37,9 +33,7 @@ class UserModel
         return $user ?: null;
     }
 
-    /**
-     * Cek apakah email sudah terdaftar
-     */
+    
     public function emailExists(string $email): bool
     {
         $stmt = $this->db->prepare("SELECT id FROM users WHERE email = ?");
@@ -47,9 +41,7 @@ class UserModel
         return (bool) $stmt->fetch();
     }
 
-    /**
-     * Buat user baru (role default: 'user')
-     */
+    
     public function create(string $nama, string $email, string $password): bool
     {
         $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -59,9 +51,7 @@ class UserModel
         return $stmt->execute([$nama, $email, $hash]);
     }
 
-    /**
-     * Cek apakah email sudah terdaftar untuk user lain
-     */
+    
     public function emailExistsForOther(string $email, int $currentUserId): bool
     {
         $stmt = $this->db->prepare("SELECT id FROM users WHERE email = ? AND id != ?");
@@ -69,9 +59,7 @@ class UserModel
         return (bool) $stmt->fetch();
     }
 
-    /**
-     * Update data user
-     */
+    
     public function update(int $id, array $data): bool
     {
         if (!empty($data['password'])) {
@@ -88,30 +76,28 @@ class UserModel
         }
     }
 
-    /**
-     * Hapus user secara permanen beserta reservasi miliknya, dan kembalikan slot_waktu ke 'Tersedia'
-     */
+    
     public function delete(int $id): bool
     {
         $this->db->beginTransaction();
         try {
-            // Temukan semua slot_waktu_id yang dipesan oleh user ini
+            
             $stmt = $this->db->prepare("SELECT slot_waktu_id FROM reservasi WHERE user_id = ?");
             $stmt->execute([$id]);
             $slots = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-            // Kembalikan slot_waktu menjadi 'Tersedia'
+            
             if (!empty($slots)) {
                 $inQuery = implode(',', array_fill(0, count($slots), '?'));
                 $stmt = $this->db->prepare("UPDATE slot_waktu SET status = 'Tersedia' WHERE id IN ($inQuery)");
                 $stmt->execute($slots);
             }
 
-            // Hapus data reservasi
+            
             $stmt = $this->db->prepare("DELETE FROM reservasi WHERE user_id = ?");
             $stmt->execute([$id]);
 
-            // Hapus user
+            
             $stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
             $stmt->execute([$id]);
 

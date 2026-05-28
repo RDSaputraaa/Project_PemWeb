@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-//  views/beranda.php — View halaman beranda
-//  Variabel dari Controller: $user, $q, $jenis, $lapangans, $ikon
-// ============================================================
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="id">

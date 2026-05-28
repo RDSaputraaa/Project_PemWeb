@@ -1,31 +1,31 @@
 <?php
-// ============================================================
-//  index.php — Front Controller / Router
-//  Semua request masuk melalui file ini,
-//  lalu diarahkan ke Controller yang sesuai.
-//
-//  Contoh URL:
-//    index.php                        → BerandaController::index()
-//    index.php?page=login             → AuthController::login()
-//    index.php?page=register          → AuthController::register()
-//    index.php?page=detail&id=1       → DetailController::show()
-//    index.php?page=admin             → AdminController::dashboard()
-//    index.php?page=manajemen_lapangan → LapanganController::index()
-//    index.php?page=data_reservasi    → ReservasiController::index()
-//    index.php?page=logout            → AuthController::logout()
-// ============================================================
 
-// Load konfigurasi dasar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/config/helper.php';
 
-// Ambil parameter halaman dari URL
+
 $page = $_GET['page'] ?? 'beranda';
 
-// Routing: arahkan ke Controller yang sesuai
+
 switch ($page) {
 
-    // ---- Halaman Publik ----
+    
 
     case 'beranda':
         require_once __DIR__ . '/controllers/BerandaController.php';
@@ -75,7 +75,7 @@ switch ($page) {
         $controller->payment();
         break;
 
-    // ---- Halaman Admin ----
+    
 
 
     case 'admin':
@@ -102,7 +102,7 @@ switch ($page) {
         $controller->index();
         break;
 
-    // ---- Halaman Tidak Ditemukan ----
+    
 
     default:
         http_response_code(404);

@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-//  views/components/sidebar.php — Komponen sidebar admin (reusable)
-//  Variabel yang dibutuhkan: $activePage (string)
-// ============================================================
+
+
+
+
 ?>
 <aside class="sidebar">
     <div class="sidebar-header">

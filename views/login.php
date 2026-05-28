@@ -1,9 +1,4 @@
-<?php
-// ============================================================
-//  views/login.php — View form login
-//  Variabel dari Controller: $error
-// ============================================================
-?>
+<?php ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>

@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-//  controllers/ProfileController.php
-//  Controller untuk manajemen profil user (CRUD)
-// ============================================================
+
+
+
+
 
 require_once __DIR__ . '/../config/helper.php';
 require_once __DIR__ . '/../models/UserModel.php';
@@ -16,15 +16,13 @@ class ProfileController
         $this->userModel = new UserModel();
     }
 
-    /**
-     * Tampilkan halaman profil & handle aksi Update/Delete
-     */
+    
     public function show(): void
     {
-        // Pastikan user sudah login
+        
         $userSession = requireLogin();
 
-        // Ambil data user terbaru dari database
+        
         $user = $this->userModel->findById($userSession['id']);
         if (!$user) {
             session_destroy();
@@ -34,7 +32,7 @@ class ProfileController
         $error = '';
         $success = '';
 
-        // Tangani form submission jika POST
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $action = $_POST['action'] ?? '';
 
@@ -45,7 +43,7 @@ class ProfileController
                 $password = $_POST['password'] ?? '';
                 $konfirmasi = $_POST['konfirmasi'] ?? '';
 
-                // Validasi input
+                
                 if (!$nama || !$email) {
                     $error = 'Nama dan Email wajib diisi.';
                 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -57,7 +55,7 @@ class ProfileController
                 } elseif (!empty($password) && $password !== $konfirmasi) {
                     $error = 'Password dan konfirmasi password tidak cocok.';
                 } else {
-                    // Update ke database
+                    
                     $updateData = [
                         'nama' => $nama,
                         'email' => $email,
@@ -66,19 +64,19 @@ class ProfileController
                     ];
 
                     if ($this->userModel->update($user['id'], $updateData)) {
-                        // Perbarui data session
+                        
                         $_SESSION['user']['nama'] = $nama;
                         $_SESSION['user']['email'] = $email;
                         
                         $success = 'Profil Anda berhasil diperbarui.';
-                        // Refresh data user
+                        
                         $user = $this->userModel->findById($user['id']);
                     } else {
                         $error = 'Gagal memperbarui profil. Silakan coba lagi.';
                     }
                 }
             } elseif ($action === 'delete') {
-                // Hapus akun secara permanen
+                
                 if ($this->userModel->delete($user['id'])) {
                     session_destroy();
                     redirect('index.php?page=beranda&msg=' . urlencode('Akun Anda telah dihapus secara permanen.'));
@@ -88,7 +86,7 @@ class ProfileController
             }
         }
 
-        // Render View profil
+        
         require __DIR__ . '/../views/profile.php';
     }
 }

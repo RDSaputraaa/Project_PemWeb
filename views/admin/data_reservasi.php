@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-//  views/admin/data_reservasi.php — View data reservasi
-//  Variabel dari Controller: $user, $reservasis, $statusClass, $activePage
-// ============================================================
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="id">

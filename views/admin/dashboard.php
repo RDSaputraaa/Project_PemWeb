@@ -1,9 +1,9 @@
 <?php
-// ============================================================
-//  views/admin/dashboard.php — View dashboard admin
-//  Variabel dari Controller: $user, $totalLapangan, $todayCount,
-//    $pending, $income, $reservasis, $activePage
-// ============================================================
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="id">

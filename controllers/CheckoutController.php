@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-//  controllers/CheckoutController.php
-//  Controller untuk alur Checkout dan Pembayaran
-// ============================================================
+
+
+
+
 
 require_once __DIR__ . '/../config/helper.php';
 require_once __DIR__ . '/../models/LapanganModel.php';
@@ -22,12 +22,10 @@ class CheckoutController
         $this->reservasiModel = new ReservasiModel();
     }
 
-    /**
-     * Halaman Checkout
-     */
+    
     public function index(): void
     {
-        // Pastikan user sudah login
+        
         $user = currentUser();
         if (!$user) {
             redirect('index.php?page=login');
@@ -35,23 +33,23 @@ class CheckoutController
 
         $slotId = (int)($_GET['slot_id'] ?? 0);
         
-        // Cari slot waktu
+        
         $slot = $this->slotModel->findAvailable($slotId);
         if (!$slot) {
-            // Jika slot tidak tersedia (sudah dibooking/ditutup), kembalikan ke beranda
+            
             redirect('index.php?msg=Slot+waktu+sudah+tidak+tersedia+atau+sudah+dipesan.');
         }
 
-        // Cari lapangan
+        
         $lap = $this->lapanganModel->findById($slot['lapangan_id']);
         if (!$lap) {
             redirect('index.php?msg=Lapangan+tidak+ditemukan.');
         }
 
-        // Handle POST saat konfirmasi checkout
+        
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validasi ulang slot
+            
             $reCheck = $this->slotModel->findAvailable($slotId);
             if (!$reCheck) {
                 $error = 'Slot sudah diambil orang lain baru saja. Silakan pilih jadwal lain.';
@@ -59,7 +57,7 @@ class CheckoutController
                 $catatan = $_POST['catatan'] ?? '';
                 $kode = $this->reservasiModel->generateKode();
 
-                // Simpan reservasi
+                
                 $reservasiId = $this->reservasiModel->create([
                     'kode'          => $kode,
                     'user_id'       => $user['id'],
@@ -73,10 +71,10 @@ class CheckoutController
                 ]);
 
                 if ($reservasiId) {
-                    // Kunci slot waktu
+                    
                     $this->slotModel->setDipesan($slotId);
                     
-                    // Arahkan ke halaman pembayaran
+                    
                     redirect("index.php?page=payment&id={$reservasiId}");
                 } else {
                     $error = 'Gagal memproses booking. Coba lagi.';
@@ -84,13 +82,11 @@ class CheckoutController
             }
         }
 
-        // Render View Checkout
+        
         require __DIR__ . '/../views/checkout.php';
     }
 
-    /**
-     * Halaman Pembayaran
-     */
+    
     public function payment(): void
     {
         $user = currentUser();
@@ -105,7 +101,7 @@ class CheckoutController
             redirect('index.php?msg=Data+reservasi+tidak+ditemukan.');
         }
 
-        // Pastikan reservasi ini milik user yang sedang login (kecuali admin)
+        
         if ($res['user_id'] !== $user['id'] && $user['role'] !== 'admin') {
             redirect('index.php?msg=Akses+ditolak.');
         }
@@ -122,11 +118,11 @@ class CheckoutController
                 $fileNameCmps = explode(".", $fileName);
                 $fileExtension = strtolower(end($fileNameCmps));
 
-                // Validasi ekstensi dan MIME type asli
+                
                 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
                 $allowedMimeTypes  = ['image/jpeg', 'image/png', 'image/gif'];
 
-                // Dapatkan MIME Type asli menggunakan mime_content_type
+                
                 $realMimeType = '';
                 if (function_exists('mime_content_type')) {
                     $realMimeType = mime_content_type($fileTmpPath);
@@ -137,20 +133,20 @@ class CheckoutController
                 }
 
                 if (in_array($fileExtension, $allowedExtensions) && in_array($realMimeType, $allowedMimeTypes)) {
-                    // Validasi ukuran (maksimal 2MB)
+                    
                     if ($fileSize < 2 * 1024 * 1024) {
-                        // Folder upload
+                        
                         $uploadFileDir = __DIR__ . '/../assets/uploads/bukti_bayar/';
                         if (!is_dir($uploadFileDir)) {
                             mkdir($uploadFileDir, 0755, true);
                         }
 
-                        // Rename file agar unik
+                        
                         $newFileName = 'bukti_' . $res['kode_reservasi'] . '_' . time() . '.' . $fileExtension;
                         $dest_path = $uploadFileDir . $newFileName;
 
                         if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                            // Simpan ke DB (path relatif dari root project)
+                            
                             $dbPath = 'assets/uploads/bukti_bayar/' . $newFileName;
                             $this->reservasiModel->updateBuktiBayar($id, $dbPath);
                             

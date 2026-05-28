@@ -1,12 +1,12 @@
 <?php
-// ============================================================
-//  config/db.php — Koneksi Database Gelora Sport
-//  Sesuaikan host, user, pass jika berbeda
-// ============================================================
+
+
+
+
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');          // Laragon default: kosong
+define('DB_PASS', '');          
 define('DB_NAME', 'gelora_sport');
 define('DB_PORT', 3306);
 

@@ -1,9 +1,4 @@
 <?php
-// ============================================================
-//  models/ReservasiModel.php — Model untuk tabel reservasi
-//  Mengelola semua query yang berhubungan dengan reservasi
-// ============================================================
-
 require_once __DIR__ . '/../config/db.php';
 
 class ReservasiModel
@@ -15,9 +10,6 @@ class ReservasiModel
         $this->db = getDB();
     }
 
-    /**
-     * Buat reservasi baru
-     */
     public function create(array $data): int
     {
         $stmt = $this->db->prepare(
@@ -38,17 +30,11 @@ class ReservasiModel
         return (int) $this->db->lastInsertId();
     }
 
-    /**
-     * Generate kode reservasi unik
-     */
     public function generateKode(): string
     {
         return 'GS-' . date('Ymd') . '-' . str_pad(rand(1, 999), 3, '0', STR_PAD_LEFT);
     }
 
-    /**
-     * Update path bukti pembayaran
-     */
     public function updateBuktiBayar(int $id, string $path): bool
     {
         return $this->db->prepare(
@@ -56,9 +42,6 @@ class ReservasiModel
         )->execute([$path, $id]);
     }
 
-    /**
-     * Cari reservasi berdasarkan ID
-     */
     public function findById(int $id): ?array
     {
         $stmt = $this->db->prepare(
@@ -73,9 +56,6 @@ class ReservasiModel
         return $res ? $res : null;
     }
 
-    /**
-     * Ambil semua reservasi milik user tertentu
-     */
     public function getByUserId(int $userId): array
     {
         $stmt = $this->db->prepare(
@@ -89,9 +69,6 @@ class ReservasiModel
         return $stmt->fetchAll();
     }
 
-    /**
-     * Ambil semua reservasi (admin) dengan join users & lapangan
-     */
     public function getAll(): array
     {
         return $this->db->query(
@@ -103,9 +80,6 @@ class ReservasiModel
         )->fetchAll();
     }
 
-    /**
-     * Ambil reservasi terbaru (admin dashboard)
-     */
     public function getRecent(int $limit = 10): array
     {
         $stmt = $this->db->prepare(
@@ -120,9 +94,6 @@ class ReservasiModel
         return $stmt->fetchAll();
     }
 
-    /**
-     * Hitung reservasi hari ini
-     */
     public function countToday(): int
     {
         $stmt = $this->db->prepare("SELECT COUNT(*) FROM reservasi WHERE tanggal = ?");
@@ -130,9 +101,6 @@ class ReservasiModel
         return (int) $stmt->fetchColumn();
     }
 
-    /**
-     * Hitung reservasi yang menunggu konfirmasi
-     */
     public function countPending(): int
     {
         return (int) $this->db->query(
@@ -140,9 +108,6 @@ class ReservasiModel
         )->fetchColumn();
     }
 
-    /**
-     * Hitung total pendapatan bulan ini
-     */
     public function pendapatanBulanIni(): int
     {
         $stmt = $this->db->prepare(
@@ -153,9 +118,6 @@ class ReservasiModel
         return (int) $stmt->fetchColumn();
     }
 
-    /**
-     * Konfirmasi reservasi (set status dikonfirmasi + lunas)
-     */
     public function konfirmasi(int $id): bool
     {
         return $this->db->prepare(
@@ -163,9 +125,6 @@ class ReservasiModel
         )->execute([$id]);
     }
 
-    /**
-     * Batalkan reservasi
-     */
     public function batalkan(int $id): bool
     {
         return $this->db->prepare(
@@ -173,9 +132,6 @@ class ReservasiModel
         )->execute([$id]);
     }
 
-    /**
-     * Ambil slot_waktu_id dari reservasi
-     */
     public function getSlotId(int $reservasiId): ?int
     {
         $stmt = $this->db->prepare("SELECT slot_waktu_id FROM reservasi WHERE id = ?");

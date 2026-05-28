@@ -1,9 +1,9 @@
 <?php
-// ============================================================
-//  views/detail.php — View detail lapangan & booking
-//  Variabel dari Controller: $user, $id, $lap, $layananList,
-//    $aturanList, $activeTanggal, $slots, $bookMsg, $bookError, $tanggalList
-// ============================================================
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="id">

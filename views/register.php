@@ -1,9 +1,4 @@
-<?php
-// ============================================================
-//  views/register.php — View form register
-//  Variabel dari Controller: $error, $success
-// ============================================================
-?>
+<?php ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
