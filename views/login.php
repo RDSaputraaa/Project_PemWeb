@@ -12,18 +12,16 @@
     <title>Login - Gelora Sport</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="login-page">
-<div class="login-wrapper">
-    <div class="left-side">
-        <div class="overlay">
-            <div class="hero-content">
-                <h1>Gelora Sport</h1>
-                <p>Sewa lapangan olahraga dengan mudah, cepat, dan terpercaya.</p>
-            </div>
+<body class="register-page">
+<div class="register-wrapper">
+    <div class="register-left">
+        <div class="branding">
+            <h1>Gelora Sport</h1>
+            <p>Bergabung dan nikmati kemudahan reservasi lapangan olahraga favoritmu.</p>
         </div>
     </div>
-    <div class="right-side">
-        <div class="form-card">
+    <div class="register-right">
+        <div class="register-card">
             <h2>LOGIN</h2>
             <p class="subtitle">Silakan masuk ke akun Anda</p>
             <?php if ($error): ?>
@@ -40,7 +38,7 @@
                     <label>Password</label>
                     <input type="password" name="password" placeholder="Masukkan password" required>
                 </div>
-                <button type="submit" class="btn-submit">Masuk</button>
+                <button type="submit" class="btn-register">Masuk</button>
             </form>
             <p class="login-link">Belum punya akun? <a href="index.php?page=register">Daftar di sini</a></p>
         </div>
