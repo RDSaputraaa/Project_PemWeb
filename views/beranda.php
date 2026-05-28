@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gelora Sport - Beranda</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -18,6 +19,7 @@
         <div class="nav-menu">
             <?php if ($user): ?>
                 <span style="color:#007c60; font-weight:600;">Halo, <?= e(explode(' ', $user['nama'])[0]) ?></span>
+                <a href="index.php?page=profile" class="login-link"><i class="fa-regular fa-user"></i> Profil Saya</a>
                 <?php if ($user['role'] === 'admin'): ?>
                     <a href="index.php?page=admin" class="login-link">Dashboard</a>
                 <?php endif; ?>
@@ -28,6 +30,15 @@
             <?php endif; ?>
         </div>
     </nav>
+
+    <?php if (!empty($_GET['msg'])): ?>
+    <div style="max-width:1200px;margin:20px auto -10px;padding:0 20px;">
+        <div style="padding:12px 18px;background:#e8f5e9;color:#155724;border:1px solid #c3e6cb;border-radius:8px;text-align:center;font-weight:500;">
+            <?= e($_GET['msg']) ?>
+        </div>
+    </div>
+    <?php endif; ?>
+
 
     <section class="search-section">
         <form method="GET" action="index.php" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;width:100%;">

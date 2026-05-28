@@ -57,7 +57,14 @@ switch ($page) {
         $controller->show();
         break;
 
+    case 'profile':
+        require_once __DIR__ . '/controllers/ProfileController.php';
+        $controller = new ProfileController();
+        $controller->show();
+        break;
+
     // ---- Halaman Admin ----
+
 
     case 'admin':
         require_once __DIR__ . '/controllers/AdminController.php';

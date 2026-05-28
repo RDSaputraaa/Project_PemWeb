@@ -58,4 +58,69 @@ class UserModel
         );
         return $stmt->execute([$nama, $email, $hash]);
     }
+
+    /**
+     * Cek apakah email sudah terdaftar untuk user lain
+     */
+    public function emailExistsForOther(string $email, int $currentUserId): bool
+    {
+        $stmt = $this->db->prepare("SELECT id FROM users WHERE email = ? AND id != ?");
+        $stmt->execute([$email, $currentUserId]);
+        return (bool) $stmt->fetch();
+    }
+
+    /**
+     * Update data user
+     */
+    public function update(int $id, array $data): bool
+    {
+        if (!empty($data['password'])) {
+            $hash = password_hash($data['password'], PASSWORD_BCRYPT);
+            $stmt = $this->db->prepare(
+                "UPDATE users SET nama = ?, email = ?, no_hp = ?, password = ? WHERE id = ?"
+            );
+            return $stmt->execute([$data['nama'], $data['email'], $data['no_hp'], $hash, $id]);
+        } else {
+            $stmt = $this->db->prepare(
+                "UPDATE users SET nama = ?, email = ?, no_hp = ? WHERE id = ?"
+            );
+            return $stmt->execute([$data['nama'], $data['email'], $data['no_hp'], $id]);
+        }
+    }
+
+    /**
+     * Hapus user secara permanen beserta reservasi miliknya, dan kembalikan slot_waktu ke 'Tersedia'
+     */
+    public function delete(int $id): bool
+    {
+        $this->db->beginTransaction();
+        try {
+            // Temukan semua slot_waktu_id yang dipesan oleh user ini
+            $stmt = $this->db->prepare("SELECT slot_waktu_id FROM reservasi WHERE user_id = ?");
+            $stmt->execute([$id]);
+            $slots = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+            // Kembalikan slot_waktu menjadi 'Tersedia'
+            if (!empty($slots)) {
+                $inQuery = implode(',', array_fill(0, count($slots), '?'));
+                $stmt = $this->db->prepare("UPDATE slot_waktu SET status = 'Tersedia' WHERE id IN ($inQuery)");
+                $stmt->execute($slots);
+            }
+
+            // Hapus data reservasi
+            $stmt = $this->db->prepare("DELETE FROM reservasi WHERE user_id = ?");
+            $stmt->execute([$id]);
+
+            // Hapus user
+            $stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
+            $stmt->execute([$id]);
+
+            $this->db->commit();
+            return true;
+        } catch (\Throwable $e) {
+            $this->db->rollBack();
+            return false;
+        }
+    }
 }
+
