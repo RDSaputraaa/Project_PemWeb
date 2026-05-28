@@ -50,7 +50,7 @@
             </div>
 
             <!-- Form Section -->
-            <form method="POST" action="index.php?page=profile" style="padding: 30px;">
+            <form id="profileForm" method="POST" action="index.php?page=profile" style="padding: 30px;">
                 <input type="hidden" name="action" value="update">
                 
                 <h3 style="margin-bottom: 20px; color: #222; font-size: 1.2rem; border-bottom: 2px solid #eaeaea; padding-bottom: 8px;">Informasi Pribadi</h3>
@@ -116,6 +116,25 @@
     </div>
 
     <script>
+    // Validasi Form Sisi Klien (HTML5 & JavaScript)
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+        const password = this.querySelector('input[name="password"]').value;
+        const konfirmasi = this.querySelector('input[name="konfirmasi"]').value;
+
+        if (password.length > 0) {
+            if (password.length < 6) {
+                e.preventDefault();
+                alert('Validasi Klien: Password baru minimal harus 6 karakter.');
+                return false;
+            }
+            if (password !== konfirmasi) {
+                e.preventDefault();
+                alert('Validasi Klien: Password baru dan Konfirmasi Password tidak cocok.');
+                return false;
+            }
+        }
+    });
+
     document.getElementById('deleteBtn').addEventListener('click', function() {
         if (confirm('Apakah Anda yakin ingin menghapus akun Anda secara permanen? Semua data reservasi Anda akan dilepaskan dan akun Anda akan dihapus selamanya.')) {
             document.getElementById('deleteAccountForm').submit();
