@@ -3,6 +3,7 @@
 //  generate_slots.php
 //  Jalankan sekali untuk generate slot 7 hari ke depan.
 //  Akses: http://localhost/gelora-sport/generate_slots.php
+//  (Tetap sebagai file terpisah, bukan via router)
 // ============================================================
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/config/helper.php';
@@ -41,4 +42,4 @@ for ($d = 0; $d < 7; $d++) {
 echo "<h2>✅ Generate Slot Selesai</h2>";
 echo "<p>Inserted: <b>$inserted</b> slot</p>";
 echo "<p>Skipped (sudah ada): <b>$skipped</b></p>";
-echo '<p><a href="/admin.php">← Kembali ke Dashboard</a></p>';
+echo '<p><a href="index.php?page=admin">← Kembali ke Dashboard</a></p>';

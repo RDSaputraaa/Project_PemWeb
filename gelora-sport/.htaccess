@@ -1,0 +1,14 @@
+# ============================================================
+#  .htaccess — URL Rewriting (opsional)
+#  Mengubah URL bersih menjadi parameter di index.php
+#  Contoh: /login → index.php?page=login
+# ============================================================
+
+RewriteEngine On
+
+# Jika file/folder asli ada (misal CSS, gambar), akses langsung
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Arahkan semua request ke index.php
+RewriteRule ^(.+)$ index.php?page=$1 [QSA,L]
