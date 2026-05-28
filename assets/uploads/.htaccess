@@ -1,0 +1,19 @@
+# Nonaktifkan eksekusi script PHP di direktori ini demi keamanan
+<FilesMatch "\.(php|php[3-6]|phtml|pl|py|jsp|sh|cgi)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Matikan Engine PHP (jika didukung apache module)
+<IfModule mod_php5.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Cegah listing direktori
+Options -Indexes

@@ -118,14 +118,25 @@ class CheckoutController
                 $fileTmpPath = $_FILES['bukti_bayar']['tmp_name'];
                 $fileName    = $_FILES['bukti_bayar']['name'];
                 $fileSize    = $_FILES['bukti_bayar']['size'];
-                $fileType    = $_FILES['bukti_bayar']['type'];
                 
                 $fileNameCmps = explode(".", $fileName);
                 $fileExtension = strtolower(end($fileNameCmps));
 
-                // Validasi ekstensi
+                // Validasi ekstensi dan MIME type asli
                 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-                if (in_array($fileExtension, $allowedExtensions)) {
+                $allowedMimeTypes  = ['image/jpeg', 'image/png', 'image/gif'];
+
+                // Dapatkan MIME Type asli menggunakan mime_content_type
+                $realMimeType = '';
+                if (function_exists('mime_content_type')) {
+                    $realMimeType = mime_content_type($fileTmpPath);
+                } elseif (function_exists('finfo_open')) {
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $realMimeType = finfo_file($finfo, $fileTmpPath);
+                    finfo_close($finfo);
+                }
+
+                if (in_array($fileExtension, $allowedExtensions) && in_array($realMimeType, $allowedMimeTypes)) {
                     // Validasi ukuran (maksimal 2MB)
                     if ($fileSize < 2 * 1024 * 1024) {
                         // Folder upload
