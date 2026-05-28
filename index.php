@@ -65,6 +65,12 @@ switch ($page) {
         $controller->dashboard();
         break;
 
+    case 'generate_slots':
+        require_once __DIR__ . '/controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->generateSlots();
+        break;
+
     case 'manajemen_lapangan':
         require_once __DIR__ . '/controllers/LapanganController.php';
         $controller = new LapanganController();

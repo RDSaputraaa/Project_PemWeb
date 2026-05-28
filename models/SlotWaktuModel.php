@@ -53,4 +53,44 @@ class SlotWaktuModel
     {
         return $this->db->prepare("UPDATE slot_waktu SET status = 'Tersedia' WHERE id = ?")->execute([$slotId]);
     }
+
+    /**
+     * Generate slot waktu 7 hari ke depan untuk semua lapangan aktif
+     */
+    public function generateUpcomingSlots(array $lapangans): array
+    {
+        $times = [
+            ['08:00','09:00'],['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],
+            ['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00'],
+            ['16:00','17:00'],['17:00','18:00'],['18:00','19:00'],['19:00','20:00'],
+            ['20:00','21:00'],['21:00','22:00'],
+        ];
+
+        $inserted = 0;
+        $skipped  = 0;
+
+        for ($d = 0; $d < 7; $d++) {
+            $tanggal = date('Y-m-d', strtotime("+$d day"));
+            foreach ($lapangans as $lap) {
+                foreach ($times as [$mulai, $selesai]) {
+                    try {
+                        $stmt = $this->db->prepare(
+                            "INSERT IGNORE INTO slot_waktu (lapangan_id, tanggal, jam_mulai, jam_selesai, harga)
+                             VALUES (?,?,?,?,?)"
+                        );
+                        $stmt->execute([$lap['id'], $tanggal, $mulai, $selesai, $lap['harga_per_jam']]);
+                        if ($stmt->rowCount() > 0) {
+                            $inserted++;
+                        } else {
+                            $skipped++;
+                        }
+                    } catch (Exception $e) {
+                        $skipped++;
+                    }
+                }
+            }
+        }
+
+        return ['inserted' => $inserted, 'skipped' => $skipped];
+    }
 }

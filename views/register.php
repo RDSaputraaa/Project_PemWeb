@@ -10,9 +10,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar - Gelora Sport</title>
-    <link rel="stylesheet" href="assets/css/register.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="register-page">
 <div class="register-wrapper">
     <div class="register-left">
         <div class="branding">

@@ -1,29 +1,9 @@
 <?php
-require_once __DIR__ . '/config/db.php';
-require_once __DIR__ . '/config/helper.php';
-
-$user = requireAdmin();
-$db   = getDB();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['konfirmasi_id'])) {
-    $rid = (int)$_POST['konfirmasi_id'];
-    $db->prepare("UPDATE reservasi SET status='Dikonfirmasi', status_bayar='Lunas' WHERE id=?")->execute([$rid]);
-    redirect('/admin.php');
-}
-
-$totalLapangan = $db->query("SELECT COUNT(*) FROM lapangan WHERE status='Aktif'")->fetchColumn();
-$reservasiHariIni = $db->prepare("SELECT COUNT(*) FROM reservasi WHERE tanggal=?");
-$reservasiHariIni->execute([date('Y-m-d')]); $todayCount = $reservasiHariIni->fetchColumn();
-$pending = $db->query("SELECT COUNT(*) FROM reservasi WHERE status='Menunggu Konfirmasi'")->fetchColumn();
-$pendapatan = $db->prepare("SELECT COALESCE(SUM(total_harga),0) FROM reservasi WHERE status_bayar='Lunas' AND MONTH(tanggal)=? AND YEAR(tanggal)=?");
-$pendapatan->execute([date('n'), date('Y')]); $income = $pendapatan->fetchColumn();
-
-$stmt = $db->query("SELECT r.*, u.nama as nama_user, l.nama as nama_lapangan
-    FROM reservasi r
-    JOIN users u ON u.id=r.user_id
-    JOIN lapangan l ON l.id=r.lapangan_id
-    ORDER BY r.created_at DESC LIMIT 10");
-$reservasis = $stmt->fetchAll();
+// ============================================================
+//  views/admin/dashboard.php — View dashboard admin
+//  Variabel dari Controller: $user, $totalLapangan, $todayCount,
+//    $pending, $income, $reservasis, $activePage
+// ============================================================
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -31,33 +11,32 @@ $reservasis = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Gelora Sport</title>
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="admin-page">
 <div class="admin-container">
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h2>Gelora Sport</h2>
-            <p>Admin Panel</p>
-        </div>
-        <ul class="sidebar-menu">
-            <li class="active"><a href="/admin.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-            <li><a href="/manajemen_lapangan.php"><i class="fa-solid fa-layer-group"></i> Manajemen Lapangan</a></li>
-            <li><a href="/data_reservasi.php"><i class="fa-solid fa-clipboard-list"></i> Data Reservasi</a></li>
-        </ul>
-        <div class="sidebar-footer">
-            <a href="/logout.php" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
-        </div>
-    </aside>
+    <?php require __DIR__ . '/../components/sidebar.php'; ?>
     <main class="main-content">
         <header class="top-header">
             <div class="header-title"><h1>Dashboard Overview</h1></div>
-            <div class="admin-profile">
-                <span class="admin-name">Halo, <?= e(explode(' ', $user['nama'])[0]) ?></span>
-                <div class="avatar"><i class="fa-solid fa-user"></i></div>
+            <div style="display:flex; align-items:center; gap:20px;">
+                <a href="index.php?page=generate_slots" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-calendar-plus"></i> Generate Slot Jadwal
+                </a>
+                <div class="admin-profile">
+                    <span class="admin-name">Halo, <?= e(explode(' ', $user['nama'])[0]) ?></span>
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                </div>
             </div>
         </header>
+
+        <?php if ($flashMsg): ?>
+            <div style="padding:12px 16px;background:#e8f5e9;color:#155724;border:1px solid #c3e6cb;border-radius:8px;margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+                <i class="fa-solid fa-circle-check"></i>
+                <span><?= $flashMsg ?></span>
+            </div>
+        <?php endif; ?>
 
         <section class="metrics-grid">
             <div class="metric-card">
@@ -81,7 +60,7 @@ $reservasis = $stmt->fetchAll();
         <section class="recent-reservations">
             <div class="section-header">
                 <h2>Reservasi Terbaru</h2>
-                <a href="/data_reservasi.php"><button class="btn-primary">Lihat Semua</button></a>
+                <a href="index.php?page=data_reservasi"><button class="btn-primary">Lihat Semua</button></a>
             </div>
             <div class="table-container">
                 <table>
@@ -107,7 +86,7 @@ $reservasis = $stmt->fetchAll();
                             </span></td>
                             <td>
                                 <?php if ($r['status'] === 'Menunggu Konfirmasi'): ?>
-                                    <form method="POST" action="/admin.php" style="display:inline;">
+                                    <form method="POST" action="index.php?page=admin" style="display:inline;">
                                         <input type="hidden" name="konfirmasi_id" value="<?= $r['id'] ?>">
                                         <button type="submit" class="btn-action">Konfirmasi</button>
                                     </form>
