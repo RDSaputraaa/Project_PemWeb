@@ -18,13 +18,13 @@ class ReservasiModel
     /**
      * Buat reservasi baru
      */
-    public function create(array $data): bool
+    public function create(array $data): int
     {
         $stmt = $this->db->prepare(
-            "INSERT INTO reservasi (kode_reservasi, user_id, lapangan_id, slot_waktu_id, tanggal, jam_mulai, jam_selesai, total_harga)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO reservasi (kode_reservasi, user_id, lapangan_id, slot_waktu_id, tanggal, jam_mulai, jam_selesai, total_harga, catatan)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
-        return $stmt->execute([
+        $stmt->execute([
             $data['kode'],
             $data['user_id'],
             $data['lapangan_id'],
@@ -33,7 +33,9 @@ class ReservasiModel
             $data['jam_mulai'],
             $data['jam_selesai'],
             $data['total_harga'],
+            $data['catatan'] ?? null,
         ]);
+        return (int) $this->db->lastInsertId();
     }
 
     /**
@@ -42,6 +44,49 @@ class ReservasiModel
     public function generateKode(): string
     {
         return 'GS-' . date('Ymd') . '-' . str_pad(rand(1, 999), 3, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * Update path bukti pembayaran
+     */
+    public function updateBuktiBayar(int $id, string $path): bool
+    {
+        return $this->db->prepare(
+            "UPDATE reservasi SET bukti_bayar = ? WHERE id = ?"
+        )->execute([$path, $id]);
+    }
+
+    /**
+     * Cari reservasi berdasarkan ID
+     */
+    public function findById(int $id): ?array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT r.*, l.nama as nama_lapangan, u.nama as nama_user, u.email as email_user
+             FROM reservasi r
+             JOIN lapangan l ON l.id = r.lapangan_id
+             JOIN users u ON u.id = r.user_id
+             WHERE r.id = ?"
+        );
+        $stmt->execute([$id]);
+        $res = $stmt->fetch();
+        return $res ? $res : null;
+    }
+
+    /**
+     * Ambil semua reservasi milik user tertentu
+     */
+    public function getByUserId(int $userId): array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT r.*, l.nama as nama_lapangan, l.foto_url
+             FROM reservasi r
+             JOIN lapangan l ON l.id = r.lapangan_id
+             WHERE r.user_id = ?
+             ORDER BY r.created_at DESC"
+        );
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll();
     }
 
     /**

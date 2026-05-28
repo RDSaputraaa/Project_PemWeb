@@ -63,6 +63,18 @@ switch ($page) {
         $controller->show();
         break;
 
+    case 'checkout':
+        require_once __DIR__ . '/controllers/CheckoutController.php';
+        $controller = new CheckoutController();
+        $controller->index();
+        break;
+
+    case 'payment':
+        require_once __DIR__ . '/controllers/CheckoutController.php';
+        $controller = new CheckoutController();
+        $controller->payment();
+        break;
+
     // ---- Halaman Admin ----
 
 

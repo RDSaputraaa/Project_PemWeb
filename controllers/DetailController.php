@@ -49,44 +49,8 @@ class DetailController
         // Ambil slot waktu dari Model
         $slots = $this->slotModel->getByLapanganTanggal($id, $activeTanggal);
 
-        // Proses booking jika POST
         $bookMsg   = '';
         $bookError = '';
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['slot_id'])) {
-            if (!$user) {
-                redirect('index.php?page=login');
-            }
-
-            $slotId = (int)$_POST['slot_id'];
-            $slot   = $this->slotModel->findAvailable($slotId);
-
-            if (!$slot) {
-                $bookError = 'Slot sudah tidak tersedia.';
-            } else {
-                $kode = $this->reservasiModel->generateKode();
-
-                // Panggil Model untuk buat reservasi
-                $this->reservasiModel->create([
-                    'kode'          => $kode,
-                    'user_id'       => $user['id'],
-                    'lapangan_id'   => $id,
-                    'slot_waktu_id' => $slotId,
-                    'tanggal'       => $slot['tanggal'],
-                    'jam_mulai'     => $slot['jam_mulai'],
-                    'jam_selesai'   => $slot['jam_selesai'],
-                    'total_harga'   => $slot['harga'],
-                ]);
-
-                // Update status slot menjadi dipesan
-                $this->slotModel->setDipesan($slotId);
-
-                $bookMsg = "Booking berhasil! Kode: <strong>$kode</strong>";
-
-                // Refresh data slot
-                $slots = $this->slotModel->getByLapanganTanggal($id, $activeTanggal);
-            }
-        }
 
         // Helper function untuk label tanggal
         $tanggalList = [];

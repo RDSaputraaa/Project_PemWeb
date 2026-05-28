@@ -92,15 +92,12 @@
                             <span class="status" style="color:#aaa;">Booked</span>
                         </div>
                     <?php else: ?>
-                        <form method="POST" action="index.php?page=detail&id=<?= $id ?>&tgl=<?= $activeTanggal ?>" style="display:contents;">
-                            <input type="hidden" name="slot_id" value="<?= $s['id'] ?>">
-                            <button type="submit" class="slot-card" style="background:none;border:1px solid #eaeaea;cursor:pointer;text-align:center;"
-                                    <?= !$user ? 'onclick="alert(\'Login dulu untuk booking!\'); window.location=\'index.php?page=login\'; return false;"' : '' ?>>
-                                <span class="duration">60 Menit</span>
-                                <span class="time"><?= substr($s['jam_mulai'],0,5) ?> - <?= substr($s['jam_selesai'],0,5) ?></span>
-                                <span class="price"><?= formatRupiah((int)$s['harga']) ?></span>
-                            </button>
-                        </form>
+                        <a href="index.php?page=checkout&slot_id=<?= $s['id'] ?>" class="slot-card" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;"
+                           <?= !$user ? 'onclick="alert(\'Login dulu untuk booking!\'); window.location=\'index.php?page=login\'; return false;"' : '' ?>>
+                            <span class="duration">60 Menit</span>
+                            <span class="time"><?= substr($s['jam_mulai'],0,5) ?> - <?= substr($s['jam_selesai'],0,5) ?></span>
+                            <span class="price"><?= formatRupiah((int)$s['harga']) ?></span>
+                        </a>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>

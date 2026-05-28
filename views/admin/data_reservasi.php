@@ -31,11 +31,11 @@
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>Kode</th><th>Pelanggan</th><th>Lapangan</th><th>Tanggal</th><th>Waktu</th><th>Total</th><th>Status</th><th>Aksi</th></tr>
+                        <tr><th>Kode</th><th>Pelanggan</th><th>Lapangan</th><th>Tanggal</th><th>Waktu</th><th>Total</th><th>Bukti Bayar</th><th>Status</th><th>Aksi</th></tr>
                     </thead>
                     <tbody>
                         <?php if (empty($reservasis)): ?>
-                            <tr><td colspan="8" style="text-align:center;color:#888;padding:30px;">Belum ada reservasi.</td></tr>
+                            <tr><td colspan="9" style="text-align:center;color:#888;padding:30px;">Belum ada reservasi.</td></tr>
                         <?php endif; ?>
                         <?php foreach ($reservasis as $r): ?>
                         <tr>
@@ -45,6 +45,15 @@
                             <td><?= formatTanggal($r['tanggal']) ?></td>
                             <td><?= substr($r['jam_mulai'],0,5) ?> - <?= substr($r['jam_selesai'],0,5) ?></td>
                             <td class="fw-bold"><?= formatRupiah((int)$r['total_harga']) ?></td>
+                            <td>
+                                <?php if ($r['bukti_bayar']): ?>
+                                    <a href="<?= e($r['bukti_bayar']) ?>" target="_blank" style="color:#007c60; font-weight:600; text-decoration:none;">
+                                        <i class="fa-solid fa-image"></i> Lihat Bukti
+                                    </a>
+                                <?php else: ?>
+                                    <span style="color:#aaa; font-style:italic; font-size:13px;">Belum Upload</span>
+                                <?php endif; ?>
+                            </td>
                             <td><span class="badge <?= $statusClass[$r['status']] ?? 'pending' ?>">
                                 <?= e($r['status']) ?>
                             </span></td>
