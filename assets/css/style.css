@@ -1231,3 +1231,42 @@ body.admin-page {
 .admin-container .btn-icon.delete:hover {
     color: #b91c1c;
 }
+
+/* =========================
+   RIWAYAT PEMBAYARAN
+========================= */
+
+.riwayat-container{
+    max-width: 1100px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.riwayat-container h1{
+    margin-bottom: 25px;
+    color: #007c60;
+}
+
+.riwayat-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.riwayat-table th,
+.riwayat-table td{
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.riwayat-table th{
+    background: #007c60;
+    color: white;
+}
+
+.riwayat-table tr:hover{
+    background: #f9f9f9;
+}

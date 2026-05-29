@@ -37,9 +37,13 @@ class ReservasiModel
 
     public function updateBuktiBayar(int $id, string $path): bool
     {
-        return $this->db->prepare(
-            "UPDATE reservasi SET bukti_bayar = ? WHERE id = ?"
-        )->execute([$path, $id]);
+        $sql = "UPDATE reservasi 
+                SET bukti_bayar = ?, 
+                    status = 'Lunas'
+                WHERE id = ?";
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$path, $id]);
     }
 
     public function findById(int $id): ?array
@@ -138,5 +142,27 @@ class ReservasiModel
         $stmt->execute([$reservasiId]);
         $result = $stmt->fetchColumn();
         return $result ? (int) $result : null;
+    }
+
+    public function getByUser(int $userId): array
+    {
+        $sql = "
+            SELECT 
+                r.*,
+                l.nama AS nama_lapangan,
+                s.jam_mulai,
+                s.jam_selesai,
+                s.tanggal
+            FROM reservasi r
+            JOIN slot_waktu s ON r.slot_waktu_id = s.id
+            JOIN lapangan l ON s.lapangan_id = l.id
+            WHERE r.user_id = ?
+            ORDER BY r.created_at DESC
+        ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$userId]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

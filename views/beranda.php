@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -20,6 +16,7 @@
             <?php if ($user): ?>
                 <span style="color:#007c60; font-weight:600;">Halo, <?= e(explode(' ', $user['nama'])[0]) ?></span>
                 <a href="index.php?page=profile" class="login-link"><i class="fa-regular fa-user"></i> Profil Saya</a>
+                <a href="index.php?page=riwayat" class="login-link"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat</a>
                 <?php if ($user['role'] === 'admin'): ?>
                     <a href="index.php?page=admin" class="login-link">Dashboard</a>
                 <?php endif; ?>

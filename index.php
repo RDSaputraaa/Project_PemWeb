@@ -79,7 +79,7 @@ switch ($page) {
         break;
 
     case 'riwayat':
-        require_once 'controllers/RiwayatController.php';
+        require_once __DIR__ . '/controllers/RiwayatController.php';
         $controller = new RiwayatController();
         $controller->index();
         break;
