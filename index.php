@@ -1,31 +1,10 @@
 <?php
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/config/helper.php';
 
 
 $page = $_GET['page'] ?? 'beranda';
-
-
 switch ($page) {
-
-    
 
     case 'beranda':
         require_once __DIR__ . '/controllers/BerandaController.php';
@@ -75,9 +54,6 @@ switch ($page) {
         $controller->payment();
         break;
 
-    
-
-
     case 'admin':
         require_once __DIR__ . '/controllers/AdminController.php';
         $controller = new AdminController();
@@ -102,7 +78,11 @@ switch ($page) {
         $controller->index();
         break;
 
-    
+    case 'riwayat':
+        require_once 'controllers/RiwayatController.php';
+        $controller = new RiwayatController();
+        $controller->index();
+        break;
 
     default:
         http_response_code(404);
