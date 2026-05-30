@@ -1,7 +1,8 @@
 <?php
 
-// Session Timeout Configuration (20 detik)
-define('SESSION_TIMEOUT', 20);
+// Session Timeout Configuration (10 detik)
+// Session akan logout jika user IDLE (tidak ada aktivitas) selama waktu ini
+define('SESSION_TIMEOUT', 10);
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -13,14 +14,14 @@ function checkSessionTimeout() {
         $current_time = time();
         $last_activity = $_SESSION['last_activity'] ?? $current_time;
         
-        // Jika sudah lebih dari 20 detik sejak last activity, logout
+        // Jika sudah lebih dari SESSION_TIMEOUT detik sejak last activity, logout
         if (($current_time - $last_activity) > SESSION_TIMEOUT) {
             session_destroy();
             header('Location: index.php?page=login&timeout=1');
             exit;
         }
         
-        // Update last activity time
+        // Update last activity time (timer reset setiap ada request)
         $_SESSION['last_activity'] = $current_time;
     }
 }
