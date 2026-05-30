@@ -16,6 +16,7 @@
         </div>
     </div>
     <div class="register-right">
+        <a href="index.php" class="btn-back" title="Kembali">&lt;</a>
         <div class="register-card">
             <h2>LOGIN</h2>
             <p class="subtitle">Silakan masuk ke akun Anda</p>

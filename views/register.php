@@ -16,6 +16,7 @@
         </div>
     </div>
     <div class="register-right">
+        <a href="index.php" class="btn-back" title="Kembali">&lt;</a>
         <div class="register-card">
             <h2>Daftar Akun</h2>
             <p class="subtitle">Isi data berikut untuk membuat akun baru</p>

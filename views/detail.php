@@ -16,6 +16,25 @@
 </head>
 <body class="detail-page">
 
+<nav class="navbar">
+    <div class="logo">Gelora Sport</div>
+    <div class="nav-menu">
+        <?php if ($user): ?>
+            <span style="color:#007c60; font-weight:600;">Halo, <?= e(explode(' ', $user['nama'])[0]) ?></span>
+            <a href="index.php?page=beranda" class="login-link"><i class="fa-solid fa-house"></i> Beranda</a>
+            <a href="index.php?page=dashboard" class="login-link"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="index.php?page=profile" class="login-link"><i class="fa-solid fa-user"></i> Profil</a>
+            <?php if ($user['role'] === 'admin'): ?>
+                <a href="index.php?page=admin" class="login-link"><i class="fa-solid fa-shield"></i> Admin</a>
+            <?php endif; ?>
+            <a href="index.php?page=logout" class="register-btn">Keluar</a>
+        <?php else: ?>
+            <a href="index.php?page=login" class="login-link">Masuk</a>
+            <a href="index.php?page=register" class="register-btn">Daftar</a>
+        <?php endif; ?>
+    </div>
+</nav>
+
 <div style="max-width:1200px;margin:20px auto;padding:0 20px;">
     <a href="index.php?page=beranda" style="text-decoration:none;color:#007c60;font-weight:bold;">
         <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda

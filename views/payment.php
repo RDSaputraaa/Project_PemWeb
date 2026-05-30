@@ -15,6 +15,8 @@
         <div class="nav-menu">
             <span style="color:#007c60; font-weight:600;">Halo, <?= e(explode(' ', $user['nama'])[0]) ?></span>
             <a href="index.php?page=beranda" class="login-link"><i class="fa-solid fa-house"></i> Beranda</a>
+            <a href="index.php?page=dashboard" class="login-link"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="index.php?page=profile" class="login-link"><i class="fa-solid fa-user"></i> Profil</a>
             <a href="index.php?page=logout" class="register-btn">Keluar</a>
         </div>
     </nav>

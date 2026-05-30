@@ -1,3 +1,21 @@
+:root {
+    --color-body-bg: #f4f7f6;
+    --color-text: #333333;
+    --color-white: #ffffff;
+    --color-primary: #007c60;
+    --color-primary-dark: #005b48;
+    --color-primary-darker: #0b7a5a;
+    --color-muted: #777777;
+    --color-border: #dddddd;
+    --color-border-light: #eaeaea;
+    --color-success-bg: #e8f5e9;
+    --color-success-soft: #d4edda;
+    --color-warning-bg: #fff3cd;
+    --color-success-text: #155724;
+    --color-danger: #c0392b;
+    --color-danger-bg: #fff8f8;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +24,13 @@
 }
 
 body {
-    background-color: #f4f7f6;
-    color: #333;
+    background-color: var(--color-body-bg);
+    color: var(--color-text);
 }
 
 
 .navbar {
-    background: #fff;
+    background: var(--color-white);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +44,7 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 800;
-    color: #007c60;
+    color: var(--color-primary);
     font-style: italic;
 }
 
@@ -38,7 +56,7 @@ body {
 
 .login-link {
     text-decoration: none;
-    color: #007c60;
+    color: var(--color-primary);
     font-weight: 600;
     font-size: 0.95rem;
     padding: 8px 16px;
@@ -52,8 +70,8 @@ body {
 
 .register-btn {
     text-decoration: none;
-    background: #007c60;
-    color: white;
+    background: var(--color-primary);
+    color: var(--color-white);
     font-weight: 600;
     font-size: 0.95rem;
     padding: 8px 20px;
@@ -62,34 +80,35 @@ body {
 }
 
 .register-btn:hover {
-    background: #005b48;
+    background: var(--color-primary-dark);
 }
 
 
 .search-section {
-    background: linear-gradient(135deg, #007c60, #005b48);
+    background: white;
     padding: 40px;
     display: flex;
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
+    border-bottom: 1px solid #eaeaea;
 }
 
 .search-bar {
     padding: 12px 20px;
-    border: none;
+    border: 1px solid #ddd;
     border-radius: 10px;
     font-size: 1rem;
     width: 100%;
     max-width: 400px;
     outline: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .search-btn {
     padding: 12px 28px;
-    background: #fff;
-    color: #007c60;
+    background: var(--color-primary);
+    color: white;
     border: none;
     border-radius: 10px;
     font-size: 1rem;
@@ -100,7 +119,7 @@ body {
 }
 
 .search-btn:hover {
-    background: #e8f5f0;
+    background: var(--color-primary-dark);
 }
 
 
@@ -111,7 +130,7 @@ body {
 }
 
 .subtitle {
-    color: #777;
+    color: var(--color-muted);
     margin-bottom: 24px;
     font-size: 0.95rem;
 }
@@ -123,13 +142,13 @@ body {
 }
 
 .card {
-    background: #fff;
+    background: var(--color-white);
     border-radius: 14px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--color-border-light);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -174,7 +193,7 @@ body {
 }
 
 .card-body .price strong {
-    color: #007c60;
+    color: var(--color-primary);
     font-size: 1rem;
 }
 
@@ -199,7 +218,7 @@ body {
 
 
 body.login-page {
-    background-color: #f4f7f6;
+    background-color: var(--color-body-bg);
 }
 
 body.register-page {
@@ -213,8 +232,8 @@ body.detail-page {
 }
 
 body.admin-page {
-    background-color: #f4f7f6;
-    color: #333;
+    background-color: var(--color-body-bg);
+    color: var(--color-text);
 }
 
 
@@ -283,11 +302,11 @@ body.admin-page {
 
 .login-wrapper .form-card h2 {
     font-size: 1.8rem;
-    color: #333;
+    color: var(--color-text);
 }
 
 .login-wrapper .subtitle {
-    color: #777;
+    color: var(--color-muted);
     margin-bottom: 25px;
 }
 
@@ -305,7 +324,7 @@ body.admin-page {
 .login-wrapper .input-group input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
@@ -313,14 +332,14 @@ body.admin-page {
 }
 
 .login-wrapper .input-group input:focus {
-    border-color: #007c60;
+    border-color: var(--color-primary);
     box-shadow: 0 0 5px rgba(0, 124, 96, 0.2);
 }
 
 .login-wrapper .btn-submit {
     width: 100%;
     padding: 12px;
-    background-color: #007c60;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -332,7 +351,7 @@ body.admin-page {
 }
 
 .login-wrapper .btn-submit:hover {
-    background-color: #005b48;
+    background-color: var(--color-primary-dark);
 }
 
 .login-wrapper .login-link {
@@ -342,7 +361,7 @@ body.admin-page {
 }
 
 .login-wrapper .login-link a {
-    color: #007c60;
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: bold;
 }
@@ -400,7 +419,7 @@ body.admin-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f4f7f6;
+    background: var(--color-body-bg);
     padding: 40px 0;
 }
 
@@ -412,12 +431,39 @@ body.admin-page {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
+.register-wrapper .register-right {
+    position: relative;
+}
+
+.register-wrapper .btn-back {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3f6f4;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: 1px solid #d9e6e1;
+    z-index: 2;
+}
+
+.register-wrapper .btn-back:hover {
+    background: #e8f1ec;
+}
+
 .register-wrapper .register-card h2 {
     margin-bottom: 5px;
 }
 
 .register-wrapper .subtitle {
-    color: #777;
+    color: var(--color-muted);
     margin-bottom: 25px;
 }
 
@@ -435,17 +481,17 @@ body.admin-page {
     margin-top: 6px;
     padding: 14px;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
 }
 
 .register-wrapper .input-group input:focus {
     outline: none;
-    border-color: #007c60;
+    border-color: var(--color-primary);
 }
 
 .register-wrapper .btn-register {
     width: 100%;
-    background: #007c60;
+    background: var(--color-primary);
     color: white;
     border: none;
     padding: 14px;
@@ -456,7 +502,7 @@ body.admin-page {
 }
 
 .register-wrapper .btn-register:hover {
-    background: #005b48;
+    background: var(--color-primary-dark);
 }
 
 .register-wrapper .login-link {
@@ -472,6 +518,48 @@ body.admin-page {
 
 .register-wrapper .login-link a:hover {
     text-decoration: underline;
+}
+
+.register-wrapper .btn-back {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #f3f6f4;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #d9e6e1;
+}
+
+.register-wrapper .btn-back:hover {
+    background: #e8f1ec;
+}
+
+.register-wrapper .register-card {
+    position: relative;
+}
+
+.register-wrapper .btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3f6f4;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: 1px solid #d9e6e1;
+}
+
+.register-wrapper .btn-back:hover {
+    background: #e8f1ec;
 }
 
 
@@ -495,7 +583,7 @@ body.admin-page {
 .booking-container {
     max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
+    background: var(--color-white);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     overflow: hidden;
@@ -505,7 +593,7 @@ body.admin-page {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--color-border-light);
     padding: 10px 20px;
 }
 
@@ -524,7 +612,7 @@ body.admin-page {
 }
 
 .booking-container .date-item.active {
-    background-color: #007c60;
+    background-color: var(--color-primary);
     color: white;
 }
 
@@ -535,7 +623,7 @@ body.admin-page {
 
 .booking-container .filter-btn {
     background: white;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 10px 15px;
     cursor: pointer;
@@ -599,7 +687,7 @@ body.admin-page {
 }
 
 .booking-container .availability-badge {
-    background-color: #007c60;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -615,7 +703,7 @@ body.admin-page {
 }
 
 .booking-container .slot-card {
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--color-border-light);
     border-radius: 10px;
     padding: 15px;
     text-align: center;
@@ -627,7 +715,7 @@ body.admin-page {
 }
 
 .booking-container .slot-card:hover:not(.booked) {
-    border-color: #005b48;
+    border-color: var(--color-primary-dark);
     box-shadow: 0 2px 8px rgba(0, 124, 96, 0.15);
 }
 
@@ -663,7 +751,7 @@ body.admin-page {
 
 .booking-container .description-section {
     padding: 30px;
-    border-top: 1px solid #eaeaea;
+    border-top: 1px solid var(--color-border-light);
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -709,8 +797,8 @@ body.admin-page {
 
 .admin-container .sidebar {
     width: 260px;
-    background-color: #fff;
-    border-right: 1px solid #eaeaea;
+    background-color: var(--color-white);
+    border-right: 1px solid var(--color-border-light);
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -719,11 +807,11 @@ body.admin-page {
 
 .admin-container .sidebar-header {
     padding: 25px 20px;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--color-border-light);
 }
 
 .admin-container .sidebar-header h2 {
-    color: #007c60;
+    color: var(--color-primary);
     font-style: italic;
     font-size: 24px;
 }
@@ -758,13 +846,13 @@ body.admin-page {
 .admin-container .sidebar-menu li.active a,
 .admin-container .sidebar-menu li a:hover {
     background-color: rgba(0, 124, 96, 0.08);
-    color: #007c60;
-    border-right: 4px solid #007c60;
+    color: var(--color-primary);
+    border-right: 4px solid var(--color-primary);
 }
 
 .admin-container .sidebar-footer {
     padding: 20px;
-    border-top: 1px solid #eaeaea;
+    border-top: 1px solid var(--color-border-light);
 }
 
 .admin-container .logout-btn {
@@ -808,7 +896,7 @@ body.admin-page {
 .admin-container .avatar {
     width: 40px;
     height: 40px;
-    background-color: #007c60;
+    background-color: var(--color-primary);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -825,14 +913,14 @@ body.admin-page {
 }
 
 .admin-container .metric-card {
-    background: #fff;
+    background: var(--color-white);
     padding: 20px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     gap: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--color-border-light);
 }
 
 .admin-container .metric-icon {
@@ -840,7 +928,7 @@ body.admin-page {
     height: 50px;
     border-radius: 10px;
     background-color: rgba(0, 124, 96, 0.1);
-    color: #007c60;
+    color: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -859,7 +947,7 @@ body.admin-page {
 
 .admin-container .metric-info p {
     font-size: 13px;
-    color: #777;
+    color: var(--color-muted);
     margin-bottom: 5px;
 }
 
@@ -869,11 +957,11 @@ body.admin-page {
 }
 
 .admin-container .recent-reservations {
-    background: #fff;
+    background: var(--color-white);
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--color-border-light);
 }
 
 .admin-container .section-header {
@@ -884,7 +972,7 @@ body.admin-page {
 }
 
 .admin-container .btn-primary {
-    background-color: #007c60;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 8px 16px;
@@ -900,7 +988,7 @@ body.admin-page {
 
 .admin-container .btn-secondary {
     background-color: #f1f8f5; /* lembut, bukan ungu */
-    color: #0b7a5a; /* hijau gelap */
+    color: var(--color-primary-darker); /* hijau gelap */
     border: 1px solid #e2efe9;
     padding: 9px 16px;
     border-radius: 6px;
@@ -917,7 +1005,7 @@ body.admin-page {
 
 .admin-container .btn-ghost {
     background: transparent;
-    color: #0b7a5a;
+    color: var(--color-primary-darker);
     border: 1px solid transparent;
     padding: 8px 14px;
     border-radius: 6px;
@@ -946,7 +1034,7 @@ body.admin-page {
 .admin-container td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--color-border-light);
 }
 
 .admin-container th {
@@ -968,13 +1056,13 @@ body.admin-page {
 }
 
 .admin-container .badge.pending {
-    background-color: #fff3cd;
+    background-color: var(--color-warning-bg);
     color: #856404;
 }
 
 .admin-container .badge.confirmed {
-    background-color: #d4edda;
-    color: #155724;
+    background-color: var(--color-success-soft);
+    color: var(--color-success-text);
 }
 
 .admin-container .badge.jenis-futsal {
@@ -993,17 +1081,17 @@ body.admin-page {
 }
 
 .admin-container .badge.status-aktif {
-    background-color: #d4edda;
-    color: #155724;
+    background-color: var(--color-success-soft);
+    color: var(--color-success-text);
 }
 
 .admin-container .badge.status-perawatan {
-    background-color: #fff3cd;
+    background-color: var(--color-warning-bg);
     color: #856404;
 }
 
 .admin-container .btn-action {
-    background-color: #007c60;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 6px 12px;
@@ -1033,7 +1121,7 @@ body.admin-page {
 }
 
 .admin-container .btn-icon.edit {
-    color: #007c60;
+    color: var(--color-primary);
 }
 
 .admin-container .btn-icon.edit:hover {
@@ -1069,7 +1157,7 @@ body.admin-page {
 
 .admin-container .sidebar-dark {
     width: 260px;
-    background-color: #0b7a5a;
+    background-color: var(--color-primary-darker);
     color: white;
     display: flex;
     flex-direction: column;
@@ -1177,7 +1265,7 @@ body.admin-page {
 }
 
 .admin-container .btn-add {
-    background-color: #0b7a5a;
+    background-color: var(--color-primary-darker);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -1288,7 +1376,7 @@ body.admin-page {
 
 .riwayat-container h1{
     margin-bottom: 25px;
-    color: #007c60;
+    color: var(--color-primary);
 }
 
 .riwayat-table{
@@ -1304,7 +1392,7 @@ body.admin-page {
 }
 
 .riwayat-table th{
-    background: #007c60;
+    background: var(--color-primary);
     color: white;
 }
 

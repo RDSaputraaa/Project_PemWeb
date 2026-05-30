@@ -49,6 +49,12 @@ switch ($page) {
         $controller->show();
         break;
 
+    case 'dashboard':
+        require_once __DIR__ . '/controllers/DashboardController.php';
+        $controller = new DashboardController();
+        $controller->index();
+        break;
+
     case 'checkout':
         require_once __DIR__ . '/controllers/CheckoutController.php';
         $controller = new CheckoutController();
