@@ -20,6 +20,11 @@
         <div class="register-card">
             <h2>Daftar Akun</h2>
             <p class="subtitle">Isi data berikut untuk membuat akun baru</p>
+            <?php if (!empty($_GET['timeout'])): ?>
+                <div style="padding:10px 14px;background:#fde8e8;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;margin-bottom:15px;font-size:.9rem;">
+                    ⏱️ Sesi Anda telah berakhir. Silakan login kembali.
+                </div>
+            <?php endif; ?>
             <?php if ($error): ?>
                 <div style="padding:10px 14px;background:#fde8e8;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;margin-bottom:15px;font-size:.9rem;"><?= e($error) ?></div>
             <?php endif; ?>
