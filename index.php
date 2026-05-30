@@ -3,7 +3,14 @@ require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/config/helper.php';
 
 
-$page = $_GET['page'] ?? 'beranda';
+$page = $_GET['page'] ?? null;
+if ($page === null) {
+    if (isAdmin()) {
+        $page = 'admin';
+    } else {
+        $page = 'beranda';
+    }
+}
 switch ($page) {
 
     case 'beranda':

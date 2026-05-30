@@ -20,9 +20,15 @@
     <main class="main-content">
         <header class="top-header">
             <div class="header-title"><h1>Dashboard Overview</h1></div>
-            <div style="display:flex; align-items:center; gap:20px;">
+            <div class="header-actions">
                 <a href="index.php?page=generate_slots" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
                     <i class="fa-solid fa-calendar-plus"></i> Generate Slot Jadwal
+                </a>
+                <a href="index.php?page=profile" class="btn-secondary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-user-pen"></i> Profil
+                </a>
+                <a href="index.php?page=logout" class="btn-ghost" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Keluar
                 </a>
                 <div class="admin-profile">
                     <span class="admin-name">Halo, <?= e(explode(' ', $user['nama'])[0]) ?></span>

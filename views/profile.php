@@ -21,7 +21,7 @@
     </nav>
 
     <div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
-        <a href="index.php?page=beranda" style="text-decoration:none;color:#007c60;font-weight:bold;display:inline-block;margin-bottom:20px;">
+        <a href="index.php?page=<?= $user['role'] === 'admin' ? 'admin' : 'beranda' ?>" style="text-decoration:none;color:#007c60;font-weight:bold;display:inline-block;margin-bottom:20px;">
             <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
         </a>
 
@@ -38,7 +38,6 @@
         <?php endif; ?>
 
         <div style="background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #eaeaea; overflow: hidden;">
-            <!-- Header Section -->
             <div style="background: linear-gradient(135deg, #007c60, #005b48); padding: 30px; color: white; display: flex; align-items: center; gap: 20px;">
                 <div style="width: 70px; height: 70px; background-color: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; border: 2px solid white;">
                     <?= strtoupper(substr($user['nama'], 0, 1)) ?>
@@ -49,7 +48,6 @@
                 </div>
             </div>
 
-            <!-- Form Section -->
             <form id="profileForm" method="POST" action="index.php?page=profile" style="padding: 30px;">
                 <input type="hidden" name="action" value="update">
                 
@@ -95,14 +93,12 @@
                 </div>
 
                 <div style="display: flex; justify-content: flex-end; gap: 12px;">
-                    <a href="index.php?page=beranda" style="text-decoration:none; padding: 12px 24px; border: 1px solid #ddd; border-radius: 8px; color: #555; font-weight: 600; text-align: center; transition: background 0.2s;"
+                    <a href="index.php?page=<?= $user['role'] === 'admin' ? 'admin' : 'beranda' ?>" style="text-decoration:none; padding: 12px 24px; border: 1px solid #ddd; border-radius: 8px; color: #555; font-weight: 600; text-align: center; transition: background 0.2s;"
                        onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='none'">Batal</a>
                     <button type="submit" style="padding: 12px 30px; background: #007c60; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s;"
                             onmouseover="this.style.background='#005b48'" onmouseout="this.style.background='#007c60'">Simpan Perubahan</button>
                 </div>
             </form>
-            
-            <!-- Danger Zone Section -->
             <div style="border-top: 1px solid #eaeaea; background-color: #fff8f8; padding: 30px; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;">
                 <h3 style="color: #c0392b; margin-top: 0; margin-bottom: 10px; font-size: 1.1rem;"><i class="fa-solid fa-triangle-exclamation"></i> Zona Bahaya</h3>
                 <p style="color: #7f8c8d; font-size: 0.9rem; margin-bottom: 20px;">Menghapus akun Anda akan menghapus data profil beserta seluruh riwayat pemesanan/reservasi Anda secara permanen. Tindakan ini tidak dapat dibatalkan.</p>

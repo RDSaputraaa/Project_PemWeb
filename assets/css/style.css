@@ -892,6 +892,47 @@ body.admin-page {
     cursor: pointer;
 }
 
+.admin-container .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* perpanjang jarak tombol sedikit */
+}
+
+.admin-container .btn-secondary {
+    background-color: #f1f8f5; /* lembut, bukan ungu */
+    color: #0b7a5a; /* hijau gelap */
+    border: 1px solid #e2efe9;
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-container .btn-secondary:hover {
+    background-color: #e6f4ec;
+}
+
+.admin-container .btn-ghost {
+    background: transparent;
+    color: #0b7a5a;
+    border: 1px solid transparent;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-container .btn-ghost:hover {
+    background-color: rgba(11,122,90,0.06);
+    border-color: rgba(11,122,90,0.1);
+}
+
 .admin-container .table-container {
     overflow-x: auto;
 }
@@ -1269,4 +1310,4 @@ body.admin-page {
 
 .riwayat-table tr:hover{
     background: #f9f9f9;
-}
+}
