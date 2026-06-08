@@ -110,8 +110,11 @@ class CheckoutController
         $success = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_FILES['bukti_bayar']) && $_FILES['bukti_bayar']['error'] === UPLOAD_ERR_OK) {
-                $fileTmpPath = $_FILES['bukti_bayar']['tmp_name'];
+            if (!empty($res['bukti_bayar'])) {
+                $error = 'Anda sudah mengunggah bukti pembayaran. Silakan tunggu konfirmasi admin.';
+            } else {
+                if (isset($_FILES['bukti_bayar']) && $_FILES['bukti_bayar']['error'] === UPLOAD_ERR_OK) {
+                    $fileTmpPath = $_FILES['bukti_bayar']['tmp_name'];
                 $fileName    = $_FILES['bukti_bayar']['name'];
                 $fileSize    = $_FILES['bukti_bayar']['size'];
                 
@@ -162,6 +165,7 @@ class CheckoutController
                 }
             } else {
                 $error = 'Harap pilih file bukti transfer terlebih dahulu.';
+            }
             }
         }
 

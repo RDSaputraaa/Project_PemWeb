@@ -38,8 +38,7 @@ class ReservasiModel
     public function updateBuktiBayar(int $id, string $path): bool
     {
         $sql = "UPDATE reservasi 
-                SET bukti_bayar = ?, 
-                    status = 'Lunas'
+                SET bukti_bayar = ?
                 WHERE id = ?";
 
         $stmt = $this->db->prepare($sql);

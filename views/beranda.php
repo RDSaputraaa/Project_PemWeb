@@ -30,11 +30,27 @@
     </nav>
 
     <?php if (!empty($_GET['msg'])): ?>
-    <div style="max-width:1200px;margin:20px auto -10px;padding:0 20px;">
-        <div style="padding:12px 18px;background:#e8f5e9;color:#155724;border:1px solid #c3e6cb;border-radius:8px;text-align:center;font-weight:500;">
+    <div id="toast-msg" style="position: fixed; top: 90px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 600px; animation: fadeIn 0.3s;">
+        <div style="padding:16px 24px; background:#e8f5e9; color:#155724; border:1px solid #c3e6cb; border-radius:12px; text-align:center; font-weight:600; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <?= e($_GET['msg']) ?>
         </div>
     </div>
+    <script>
+        setTimeout(() => {
+            const toast = document.getElementById('toast-msg');
+            if (toast) {
+                toast.style.transition = 'opacity 0.5s';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 500);
+            }
+        }, 5000);
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+    </style>
     <?php endif; ?>
 
 

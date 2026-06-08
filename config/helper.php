@@ -1,8 +1,8 @@
 <?php
 
-// Session Timeout Configuration (10 detik)
+// Session Timeout Configuration (3600 detik = 1 jam)
 // Session akan logout jika user IDLE (tidak ada aktivitas) selama waktu ini
-define('SESSION_TIMEOUT', 10);
+define('SESSION_TIMEOUT', 3600);
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

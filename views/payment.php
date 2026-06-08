@@ -68,6 +68,7 @@
                 </div>
             </div>
 
+            <?php if (empty($res['bukti_bayar'])): ?>
             <!-- Upload Form -->
             <form method="POST" action="index.php?page=payment&id=<?= $res['id'] ?>" enctype="multipart/form-data" style="padding: 30px;">
                 <h3 style="margin-top:0; margin-bottom: 15px; color: #222; font-size: 1.1rem; padding-bottom: 5px;">Unggah Bukti Transfer</h3>
@@ -92,6 +93,24 @@
                             onmouseover="this.style.background='#005b48'" onmouseout="this.style.background='#007c60'">Kirim Bukti Pembayaran</button>
                 </div>
             </form>
+            <?php else: ?>
+            <!-- Sudah Upload -->
+            <div style="padding: 30px; text-align: center;">
+                <div style="padding: 25px; background: #e8f5e9; border: 1px solid #c3e6cb; border-radius: 12px; display: inline-block;">
+                    <i class="fa-solid fa-circle-check" style="color: #155724; font-size: 40px; margin-bottom: 15px;"></i>
+                    <h3 style="color: #155724; margin: 0 0 10px; font-size: 1.2rem;">Bukti Pembayaran Sudah Diunggah</h3>
+                    <p style="color: #155724; font-size: 0.95rem; margin: 0 0 20px;">Tunggu konfirmasi dari admin terkait status pembayaran Anda.</p>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <img src="<?= e($res['bukti_bayar']) ?>" alt="Bukti Pembayaran" style="max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid #c3e6cb; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    </div>
+                    
+                    <div>
+                        <a href="index.php?page=riwayat" style="display: inline-block; padding: 12px 24px; background: #007c60; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s;" onmouseover="this.style.background='#005b48'" onmouseout="this.style.background='#007c60'">Lihat Riwayat</a>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 
