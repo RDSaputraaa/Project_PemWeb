@@ -96,12 +96,12 @@ class AuthController
     
     public function logout(): void
     {
-        // clear session data
+        
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         $_SESSION = [];
-        // remove session cookie
+        
         if (ini_get('session.use_cookies')) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000,
