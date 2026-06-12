@@ -43,12 +43,12 @@
                     <table class="riwayat-table" style="width: 100%; border-collapse: collapse; text-align: left;">
                         <thead>
                             <tr style="border-bottom: 2px solid #eaeaea;">
-                                <th style="padding: 16px; color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Lapangan</th>
-                                <th style="padding: 16px; color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Tanggal</th>
-                                <th style="padding: 16px; color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Jam</th>
-                                <th style="padding: 16px; color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Total</th>
-                                <th style="padding: 16px; color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Status</th>
-                                <th style="padding: 16px; color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; text-align: center;">Aksi</th>
+                                <th style="padding: 16px; color: #ffffff; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Lapangan</th>
+                                <th style="padding: 16px; color: #ffffff; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Tanggal</th>
+                                <th style="padding: 16px; color: #ffffff; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Jam</th>
+                                <th style="padding: 16px; color: #ffffff; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Total</th>
+                                <th style="padding: 16px; color: #ffffff; font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Status</th>
+                                <th style="padding: 16px; color: #ffffff; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; text-align: center;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -2,7 +2,7 @@
 
 
 
-define('SESSION_TIMEOUT', 3600);
+define('SESSION_TIMEOUT', 60*60); 
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
