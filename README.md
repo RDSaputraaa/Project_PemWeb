@@ -1,3 +1,5 @@
+ Ini link Hostingnya : http://gelorasport.42web.io/?i=1
+
 # Gelora Sport - Sistem Informasi Reservasi Lapangan (MVC PHP)
 
 Aplikasi Reservasi Lapangan Olahraga dinamis yang dibangun dengan menerapkan pola arsitektur **Model-View-Controller (MVC)** menggunakan PHP Native dan database MySQL (PDO).
